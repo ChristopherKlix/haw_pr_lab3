@@ -28,9 +28,11 @@ The insane version includes a fully designed UI (user interface) with animated n
 It also allows for automated (random) input for user numbers as well as an automated game mode, in which the program repeatedly plays round after round until it gets "6 correct" or is manually interrupted.
 
 <!-- ![Console Screenshot of main](./img/insane_example.png) -->
-<img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
-<img src="./img/insane_example_default.gif" alt="Console Screenshot of main" width="200"/>
-<img src="./img/insane_example_matrix.gif" alt="Console Screenshot of main" width="200"/>
+<div>
+  <img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
+  <img src="./img/insane_example_default.gif" alt="Console Screenshot of main" width="200"/>
+  <img src="./img/insane_example_matrix.gif" alt="Console Screenshot of main" width="200"/>
+</div>
 
 ### How to use
 
