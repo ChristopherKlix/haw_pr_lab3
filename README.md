@@ -11,8 +11,16 @@ I divided them into two separate versions:
 
 Each version has a different level of complexitiy. Some elements are not included in all versions.
 
-#### STATUS
+### STATUS
 
 ![SIMPEL](https://img.shields.io/badge/SIMPLE-WORK%20IN%20PROGRESS-yellow?style=for-the-badge)
 
 ![INSANE](https://img.shields.io/badge/INSANE-WORKS-success?style=for-the-badge)
+
+## Simple
+
+work in progress
+
+## Insane
+
+![Console Screenshot of main](./img/insane_example.png)
