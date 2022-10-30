@@ -29,6 +29,8 @@ It also allows for automated (random) input for user numbers as well as an autom
 
 <!-- ![Console Screenshot of main](./img/insane_example.png) -->
 <img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
+<img src="./img/insane_example_default.gif" alt="Console Screenshot of main" width="200"/>
+<img src="./img/insane_example_matrix.gif" alt="Console Screenshot of main" width="200"/>
 
 ### How to use
 
