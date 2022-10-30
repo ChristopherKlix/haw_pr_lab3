@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 
-short get_short(char[]);
+short get_short(char[], short, short);
 
 
 int main(int argc, char const *argv[])
@@ -12,7 +12,8 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-short get_short(char txt[])
+
+short get_short(char txt[], short min, short max)
 {
     // declare working variables
     short value;
@@ -32,6 +33,8 @@ short get_short(char txt[])
         // check for valid user input
         if (ret_val != 2) printf("Invalid input.\n");
         else if (ch != '\n') printf("Incorrect scanf behavior\n");
+        else if (value < min) printf("Number out of bounce (min)\n");
+        else if (value > max) printf("Number out of bounce (max)\n");
         else finished = true;
         
         // clear input stream buffer
