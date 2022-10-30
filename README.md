@@ -23,6 +23,43 @@ work in progress
 
 ## Insane
 
-<!-- ![Console Screenshot of main](./img/insane_example.png) -->
+The insane version includes a fully design UI (user interface) with animated number draft, matrix visualization, and total game results.
 
+It also allows for automated (random) input for user numbers as well as an automated game mode, in which the program repeatly plays round after round until it gets "6 correct" or is manually interrupted.
+
+<!-- ![Console Screenshot of main](./img/insane_example.png) -->
 <img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
+
+### How to use
+
+First, you need to build the binary with `make` or alternatively directly with `clang` or `gcc`. No external local headerfiles are used.
+
+```sh
+$ make main
+cc     main.c   -o main
+```
+
+Then run the executable.
+
+```sh
+$ ./main
+...
+```
+
+#### Flags
+
+You can modify the execution of the program by providing CLI arguments.
+
+```sh
+$ ./main -r    # random auto-input for user numbers
+
+$ ./main -m    # print animated matrix (7x7 table)
+
+$ ./main -a    # automated game
+```
+
+You can also combine these flags into a single flag. The order is irrelevant.
+
+```sh
+$ ./main -rm    # random auto-input & print matrix
+```
