@@ -55,11 +55,18 @@ $ ./main -r    # random auto-input for user numbers
 
 $ ./main -m    # print animated matrix (7x7 table)
 
-$ ./main -a    # automated game
+$ ./main -f    # force win
+
+$ ./main -a    # automated game (still requires manual user input)
 ```
 
 You can also combine these flags into a single flag. The order is irrelevant.
 
 ```sh
 $ ./main -rm    # random auto-input & print matrix
+```
+
+To completely run the game automated use the `-ra` flag.
+```sh
+$ ./main -ra    # random auto-input & automated game
 ```
