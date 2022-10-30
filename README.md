@@ -23,4 +23,6 @@ work in progress
 
 ## Insane
 
-![Console Screenshot of main](./img/insane_example.png)
+<!-- ![Console Screenshot of main](./img/insane_example.png) -->
+
+<img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
