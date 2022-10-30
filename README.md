@@ -23,9 +23,9 @@ work in progress
 
 ## Insane
 
-The insane version includes a fully design UI (user interface) with animated number draft, matrix visualization, and total game results.
+The insane version includes a fully designed UI (user interface) with animated number draft, matrix visualization, and total game results.
 
-It also allows for automated (random) input for user numbers as well as an automated game mode, in which the program repeatly plays round after round until it gets "6 correct" or is manually interrupted.
+It also allows for automated (random) input for user numbers as well as an automated game mode, in which the program repeatedly plays round after round until it gets "6 correct" or is manually interrupted.
 
 <!-- ![Console Screenshot of main](./img/insane_example.png) -->
 <img src="./img/insane_example.png" alt="Console Screenshot of main" width="200"/>
