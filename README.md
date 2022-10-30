@@ -13,6 +13,6 @@ Each version has a different level of complexitiy. Some elements are not include
 
 #### STATUS
 
-![SIMPEL](https://img.shields.io/badge/SIMPLE-WORKS-success?style=for-the-badge)
+![SIMPEL](https://img.shields.io/badge/SIMPLE-WORK%20IN%20PROGRESS-yellow?style=for-the-badge)
 
 ![INSANE](https://img.shields.io/badge/INSANE-WORKS-success?style=for-the-badge)
