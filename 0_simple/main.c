@@ -24,6 +24,11 @@ int main(int argc, char const *argv[])
     short user_numbers[NUMBER_COUNT] = { 0 };
     short winning_numbers[NUMBER_COUNT] = { 0 };
 
+    // User Interface
+    printf("--------------------------------\n");
+    printf("    Welcome to 6 out of 49\n");
+    printf("--------------------------------\n");
+
     // Assign user input to array
     for (int i = 0; i < NUMBER_COUNT; i++)
     {
@@ -31,8 +36,10 @@ int main(int argc, char const *argv[])
     }
 
     // Print array to console
+    printf("--------------------------------\n");
     printf("Your numbers are:\n");
     print_array(user_numbers, NUMBER_COUNT);
+    printf("--------------------------------\n");
 
     // pick numbers
     srand(time(NULL));
@@ -70,11 +77,32 @@ int main(int argc, char const *argv[])
     // Print array to console
     printf("The winning numbers are:\n");
     print_array(winning_numbers, NUMBER_COUNT);
+    printf("--------------------------------\n");
+
+
+    // Check for correct numbers
+    short correct_numbers;
+
+    for (int i = 0; i < NUMBER_COUNT; i++)
+    {
+        for (int j = 0; j < NUMBER_COUNT; j++)
+        {
+            if (user_numbers[i] == winning_numbers[j])
+            {
+                correct_numbers++;
+            }
+        }
+    }
+
+    printf("You have %d number(s) correct!\n", correct_numbers);
+    printf("--------------------------------\n");
+
     
     return 0;
 }
 
 
+// helper function to print array inline
 void print_array(short array[], short arr_len)
 {
     for (int i = 0; i < arr_len; i++)
@@ -87,6 +115,8 @@ void print_array(short array[], short arr_len)
     return;
 }
 
+
+// check for uniqueness in array
 bool number_is_unique(short number, short array[], short arr_len)
 {
     // Iterate over array and see if there are matching numbers
@@ -104,6 +134,8 @@ bool number_is_unique(short number, short array[], short arr_len)
     return true;
 }
 
+
+// util function to ask for user input
 short get_short(char txt[], short min, short max)
 {
     // declare working variables
