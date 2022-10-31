@@ -19,6 +19,8 @@ Each version has a different level of complexitiy. Some elements are not include
 
 ## Simple
 
+Check out the video tutorial series: [YouTube](https://www.youtube.com/playlist?list=PLdcKp-rQ6drIDnrY41R3ttXm7ehK7vOvu)
+
 work in progress
 
 ## Insane
