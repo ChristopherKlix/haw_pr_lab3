@@ -11,6 +11,11 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+#if _WIN32
+#define _CRT_SECURE_NO_WARNINGS
+#include <windows.h>
+#endif
+
 
 // ---------
 // custom type definitions
@@ -78,13 +83,23 @@ typedef struct auto_game_state
     double total;
 } auto_game_state;
 
+typedef struct get_short_ret_val
+{
+    short n;
+    bool success;
+    int scanf_ret_val;
+    bool invalid_char;
+    bool map_fail;
+    char *err_msg;
+} get_short_ret_val;
+
 
 // ---------
 // prototypes
 // ---------
 
 game_result play(game_config);
-short get_short(char*, short, short);
+get_short_ret_val get_short(char*);
 bool element_in_list(int, short *, short);
 int linear_sort(short*, short*, short);
 int is_unique(short, short*, short);
@@ -278,7 +293,71 @@ game_result play(game_config g_game_config)
         do
         {
             random_number = rand() % NUMBER_RANGE.max;
-            n = g_game_config.random_input ? random_number : get_short(s, NUMBER_RANGE.min, NUMBER_RANGE.max);
+
+            if (g_game_config.random_input)
+            {
+                n = random_number;
+            }
+            else
+            {
+                get_short_ret_val tmp;
+                bool valid_user_input = false;
+
+                do
+                {
+                    tmp = get_short(s);
+
+                    if (tmp.invalid_char || tmp.map_fail)
+                    {
+                        fprintf(stderr, "\033[31m");
+                        fprintf(stderr, "ERR: %s", tmp.err_msg);
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        printf("\033[1F\033[0K");
+                        fprintf(stderr, "\r\033[0K");
+                        fprintf(stderr, "\033[0m");
+                    }
+                    else if (tmp.n < NUMBER_RANGE.min)
+                    {
+                        fprintf(stderr, "Number must be >= %d", NUMBER_RANGE.min);
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        printf("\033[1F\033[0K");
+                        fprintf(stderr, "\r\033[0K");
+                        fprintf(stderr, "\033[0m");
+                    }
+                    else if (tmp.n > NUMBER_RANGE.max)
+                    {
+                        fprintf(stderr, "Number must be <= %d", NUMBER_RANGE.max);
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        fprintf(stderr, ".");
+                        msleep(1000);
+                        printf("\033[1F\033[0K");
+                        fprintf(stderr, "\r\033[0K");
+                        fprintf(stderr, "\033[0m");
+                    }
+                    else
+                    {
+                        n = tmp.n;
+                        valid_user_input = true;
+                    }
+
+                } while (!valid_user_input);
+            }
 
             if (g_game_config.random_input) printf("\n");
 
@@ -549,29 +628,40 @@ int get_unique_number(short *numbers, short min, short max, short arr_len)
 }
 
 
-short get_short(char *txt, short min, short max)
+get_short_ret_val get_short(char *prompt)
 {
-    short value;
-    int finished;
-    char ch;
-    int ret_val;
+    short n;
+    char terminating_ch = '\0';
 
-    do
+    get_short_ret_val ret_val = {
+        .n = 0,
+        .err_msg = ""
+    };
+
+    printf("%s", prompt);
+    ret_val.scanf_ret_val = scanf("%hd%c", &n, &terminating_ch);
+
+    if (ret_val.scanf_ret_val != 2) 
     {
-        printf("%s", txt);
-        ch = '\0';
-        ret_val = scanf("%hd%c", &value, &ch);
+        ret_val.success = false;
+        ret_val.map_fail = true;
+        ret_val.err_msg = "Could not assign input to format-string";
+    }
+    else if (terminating_ch != '\n')
+    {
+        ret_val.success = false;
+        ret_val.invalid_char = true;
+        ret_val.err_msg = "Unexpected terminating character";
+    }
+    else
+    {
+        ret_val.n = n;
+        ret_val.success = true;
+    }
 
-        if (ret_val != 2) printf("Invalid input...\n");
-        else if (ch != '\n') printf("Invalid input...\n");
-        else if (value < min) printf("Number must be greater than %d\n", min);
-        else if (value > max) printf("Number must be smaller than %d\n", max);
-        else finished = 1;
-
-        while (ch != '\n') scanf("%c", &ch);
-    } while (!finished);
+    while (terminating_ch != '\n') scanf("%c", &terminating_ch);
     
-    return value;
+    return ret_val;
 }
 
 
@@ -635,7 +725,13 @@ char *total_to_emoji(double total)
     else return "\U0001F974";
 }
 
-
+#if _WIN32
+int msleep(long msec)
+{
+    Sleep(msec);
+    return 0;
+}
+#else
 int msleep(long msec)
 {
     struct timespec ts;
@@ -656,3 +752,4 @@ int msleep(long msec)
 
     return res;
 }
+#endif
