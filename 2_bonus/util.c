@@ -141,3 +141,13 @@ bool number_is_unique(short number, short *array, short arr_len)
     // matching numbers, we return true
     return true;
 }
+
+bool number_in_array(short n, short *arr, short arr_len)
+{
+    for (size_t i = 0; i < arr_len; i++)
+    {
+        if (n == arr[i]) return true;
+    }
+    
+    return false;
+}

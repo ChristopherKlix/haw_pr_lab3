@@ -24,7 +24,8 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < NUMBER_COUNT; i++)
     {
         // Holding the user number
-        short user_number;
+        short user_number = 0;
+        bool number_is_uniqe = false;
 
         // Get number from user
         // repeat if the user number
@@ -32,7 +33,18 @@ int main(int argc, char const *argv[])
         do
         {
             user_number = get_short("Enter a number: ", MIN, MAX);
-        } while (!number_is_unique(user_number, user_numbers, NUMBER_COUNT));
+
+            // Step BONUS 1
+            // Check input for uniqueness
+            if (!number_is_unique(user_number, user_numbers, NUMBER_COUNT))
+            {
+                printf("You already entered this number...\n");
+            }
+            else
+            {
+                number_is_uniqe = true;
+            }
+        } while (!number_is_uniqe);
         
         // Now that we found a unique user number
         // we assign it to the user_numbers array
@@ -115,7 +127,26 @@ int main(int argc, char const *argv[])
         case 6: printf("You have won 1,000,000€!\n");
         default: printf("You didn't win any money.\n");
     }
-    
+
+    print_delimiter("-", 32);
+
+    // Step BONUS 2
+    // Print matrix
+    for (int i = MIN; i < MAX+1; i++)
+    {
+        printf("%3d", i);
+        if (number_in_array(i, winning_numbers, NUMBER_COUNT))
+        {
+            printf("x");
+        }
+        else
+        {
+            printf(" ");
+        }
+        
+        if ((i % 7) == 0) printf("\n");
+    }
+
     print_delimiter("-", 32);
     
     return 0;

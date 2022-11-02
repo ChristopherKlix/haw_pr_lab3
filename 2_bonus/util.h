@@ -26,4 +26,6 @@ void print_header(char *txt);
 
 bool number_is_unique(short number, short *array, short arr_len);
 
+bool number_in_array(short n, short *arr, short arr_len);
+
 #endif
