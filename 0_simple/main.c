@@ -29,6 +29,7 @@ int main(int argc, char const *argv[])
     printf("    Welcome to 6 out of 49\n");
     printf("--------------------------------\n");
 
+    // Step 4
     // Assign user input to array
     for (int i = 0; i < NUMBER_COUNT; i++)
     {
@@ -41,6 +42,7 @@ int main(int argc, char const *argv[])
     print_array(user_numbers, NUMBER_COUNT);
     printf("--------------------------------\n");
 
+    // Step 5
     // pick numbers
     srand(time(NULL));
 
@@ -80,8 +82,9 @@ int main(int argc, char const *argv[])
     printf("--------------------------------\n");
 
 
+    // Step 6
     // Check for correct numbers
-    short correct_numbers;
+    short correct_numbers = 0;
 
     for (int i = 0; i < NUMBER_COUNT; i++)
     {
@@ -97,7 +100,19 @@ int main(int argc, char const *argv[])
     printf("You have %d number(s) correct!\n", correct_numbers);
     printf("--------------------------------\n");
 
+    // Step 7
+    switch (correct_numbers)
+    {
+        case 2: printf("You have won 5€!\n");
+        case 3: printf("You have won 50€!\n");
+        case 4: printf("You have won 1,000€!\n");
+        case 5: printf("You have won 50,000€!\n");
+        case 6: printf("You have won 1,000,000€!\n");
+        default: printf("You didn't win any money.\n");
+    }
     
+    print_delimiter("-", 32);
+
     return 0;
 }
 
